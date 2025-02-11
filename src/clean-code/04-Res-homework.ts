@@ -5,26 +5,27 @@
     // includes? arrays?
     function isRedFruit( fruit: string ): boolean {
         
-        const fruitNames = ['manzana', 'cereza', 'ciruela'];
-        if ( fruitNames.includes(fruit) ) return true;
-        
-        return false;
+        const redFruits = ['manzana', 'cereza', 'ciruela'];        
+        return redFruits.includes(fruit);
     }
 
     // Simplificar esta función
     // switch? Object literal? validar posibles colores
-    function getFruitsByColor( color: string ): string[] {
+    // En java es como declarar un map<String, List<String>>
+    type FruitColor = 'red'|'yellow'|'purple';
+    function getFruitsByColor( color: FruitColor ): string[] {
 
-        switch (color) {
-            case 'red':
-                return ['manzana','fresa'];
-            case 'yellow':
-                return ['piña','banana'];
-            case 'purple':
-                return ['moras','uvas']
-            default:
-                throw Error('the color must be: red, yellow, purple');
+        const fruitsByColor = {
+            red : ['manzana','fresa'],
+            yellow: ['piña','banana'],
+            purple: ['moras','uvas']
         }
+
+        if (!Object.keys( fruitsByColor).includes(color))
+            throw Error('the color must be: red, yellow, purple');
+
+        return fruitsByColor[color];
+        
     }
 
     // Simplificar esta función
@@ -35,22 +36,15 @@
 
     function workingSteps() {
 
-        if( isFirstStepWorking !== true ) {
-           return 'First step broken.';
-        }
+        if( !isFirstStepWorking ) return 'First step broken.';
 
-        if( isSecondStepWorking !== true ) {
-            return 'Second step broken.';
-        }
-        if( isThirdStepWorking !== true ) {
-           return 'Third step broken.';
-        }
+        if( !isSecondStepWorking ) return 'Second step broken.';
+    
+        if( !isThirdStepWorking ) return 'Third step broken.';
 
-        if( isFourthStepWorking === true ) {
-            return 'Working properly!';
-        }
+        if( !isFourthStepWorking ) return 'Fourth step broken.';
 
-        return 'Fourth step broken.';
+        return 'Working properly!';
     }
 
 
